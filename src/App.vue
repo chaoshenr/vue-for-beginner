@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+    <div id="app">
+		<div class="header">
+			<router-link to="/text-jokes">文本</router-link>
+		</div>
+      	<router-view/>
+    </div>
 </template>
 
 <script>
-import axios from "./assets/utils/axios_base";
 export default {
   	name: 'App',
 	created(){

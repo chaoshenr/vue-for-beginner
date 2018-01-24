@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="text-jokes">
       <h1>home page</h1>
       <div class="jokes-wrapper">
           <joke-item v-for="(item, index) in jokeList" :key="index" :item="item"></joke-item>
@@ -12,7 +12,7 @@
 import requestAPI from "@/js/requestAPI"
 import jokeItem from "@/components/jokeItem"
 export default {
-    name: "Home",
+    name: "TextJokes",
     data(){
         return {
             jokeList: []
