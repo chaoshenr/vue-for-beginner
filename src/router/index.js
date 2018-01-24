@@ -5,6 +5,7 @@ import TextJokes from "@/components/textJokes"
 Vue.use(Router)
 
 export default new Router({
+	mode: "history",
     routes: [
 		{
 			path: '/text-jokes',
