@@ -1,8 +1,7 @@
 <template>
   <div class="text-jokes">
-      <h1>home page</h1>
       <div class="jokes-wrapper">
-          <joke-item v-for="(item, index) in jokeList" :key="index" :item="item"></joke-item>
+          <text-item class="text-item" v-for="(item, index) in jokeList" :key="index" :item="item"></text-item>
       </div>
       
   </div>
@@ -10,7 +9,7 @@
 
 <script>
 import requestAPI from "@/js/requestAPI"
-import jokeItem from "@/components/jokeItem"
+import textItem from "@/components/textItem"
 export default {
     name: "TextJokes",
     data(){
@@ -19,7 +18,7 @@ export default {
         }
     },
     components: {
-        jokeItem: jokeItem
+        textItem: textItem
     },
     created(){
         //请求
@@ -35,7 +34,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.text-jokes {
+    width: 100%;
+    .jokes-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        
+    }
+}
 </style>
 
 
