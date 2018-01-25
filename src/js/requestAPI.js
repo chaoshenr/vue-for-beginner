@@ -2,13 +2,14 @@ import axios from "axios";
 
 let axs = axios.create({
     baseURL: " http://route.showapi.com",
-    timeout: 20000,
+    timeout: 6000,
     headers: {
     }
 })
 let baseParam = {
     showapi_appid: "55018",
-	showapi_sign: "0c4c61663d694a62a2d4e333ea126a9a"
+    showapi_sign: "0c4c61663d694a62a2d4e333ea126a9a",
+    maxResult: 20
 }
 let requestURL = {
     textJokeURL: "341-1", //文字笑话
@@ -19,12 +20,29 @@ export default {
     /**
      * 获取文字笑话列表
      * 
+     * @param {Object} param 
+     * @returns Promise
      */
     getTextJokes(param){
         return this.getData(requestURL.textJokeURL, param);
     },
+    /**
+     * 获取图片笑话列表
+     * 
+     * @param {Object} param 
+     * @returns Promise
+     */
     getImageJokes(param) {
         return this.getData(requestURL.imageJokeURL, param);
+    },
+    /**
+     * 获取动效笑话列表
+     * 
+     * @param {Object} param 
+     * @returns Promise
+     */
+    getGifJokes(param) {
+        return this.getData(requestURL.gifJokeURL, param);
     },
     getData(url, param) {
         return new Promise((resolve, reject) => {
