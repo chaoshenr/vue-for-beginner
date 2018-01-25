@@ -1,6 +1,6 @@
 <template>
   <div class="text-item">
-      <p class="text">{{ item.text }}</p>
+      <p class="text" v-html="item.text"></p>
       <p class="time">{{ item.ct }}</p>
   </div>
 </template>
@@ -23,11 +23,16 @@ export default {
 
 <style lang="scss" scoped>
 .text-item {
-    width: calc(100% - .24rem);
+    width: 100%;
     text-align: left;
     font-size: .16rem;
     margin-top: .2rem;
-    color: #666;
+    color: #333;
+    // background: #888;
+    p {
+        width: calc(100% - .24rem);
+        margin: 0 auto;
+    }
     .time {
         text-align: right;
         margin-top: 0.0.8rem;

@@ -39,12 +39,12 @@ export default {
             display: inline-block;
             color: #888;
             &:hover {
-                background: #dd091ee8;
+                background: rgb(207, 28, 28);
                 color: white;
             }
         }
         .router-link-active {
-            background: #dd091ee8;
+            background: rgb(207, 28, 28);
             color: white;
         }
         @media screen and (max-width: 450px) {

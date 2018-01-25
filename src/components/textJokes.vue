@@ -22,8 +22,8 @@ export default {
     },
     created(){
         //请求
-        requestAPI.getJokeList({
-            page: 2
+        requestAPI.getTextJokes({
+            page: 1
         }).then( res => {
             this.jokeList = res.beans.contentlist;
             console.log(this.jokeList);
