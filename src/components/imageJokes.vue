@@ -1,10 +1,11 @@
 <template>
     <div class="image-jokes">
-        image-jokes
+        <image-item v-for="(item, key) of imageJokes" :key="key" :item="item"></image-item>
     </div>
 </template>
 <script>
 import requestApI from "@/js/requestAPI"
+import imageItem from "@/components/imageItem"
 export default {
     name: "ImageJokes",
     data(){
@@ -12,9 +13,12 @@ export default {
             imageJokes: []
         }
     },
+    components: {
+        imageItem
+    },
     created(){
         requestApI.getImageJokes({
-            page: 1
+            page: 2
         }).then( result => {
             let contentList = result.beans.contentlist;
             this.imageJokes = [...contentList];

@@ -2,8 +2,7 @@
   <div class="text-jokes">
       <div class="jokes-wrapper">
           <text-item class="text-item" v-for="(item, index) in jokeList" :key="index" :item="item"></text-item>
-      </div>
-      
+      </div>   
   </div>
 </template>
 
@@ -18,7 +17,7 @@ export default {
         }
     },
     components: {
-        textItem: textItem
+        textItem
     },
     created(){
         //请求
