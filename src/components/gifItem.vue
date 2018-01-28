@@ -1,25 +1,19 @@
 <template>
-  <div class="image-item">
-      <span class="title">{{ item.title }}</span>
-      <div class="img-wrapper">
-          <img :src="item.img" alt="图片未找到">
-      </div>   
-  </div>
+    <div class="gif-item">
+        <span class="title">{{item.title}}</span>
+        <div class="gif-wrapper">
+            <img :src="item.img" alt="动图获取失败">
+        </div> 
+    </div>
 </template>
-
 <script>
 export default {
-    name: "ImageItem",
-    data(){
-        return {
-        }
-    },
-    props:["item"]
+    name: "GifItem",
+    props: ["item"],
 }
 </script>
-
 <style lang="scss" scoped>
-.image-item {
+.gif-item {
     width: 100%;
     padding: .1rem 0;
     .title {
@@ -28,7 +22,7 @@ export default {
         display: inline-block;
         margin: .1rem 0;
     }
-    .img-wrapper {
+    .gif-wrapper {
         width: 100%;
         background: no-repeat;
         img {

@@ -1,4 +1,4 @@
-export function dateFormat(fmt, date) { //author: meizz   
+function dateFormat(fmt, date) { //author: meizz   
     var o = {
         "M+": date.getMonth() + 1,               //月份   
         "d+": date.getDate(),                    //日   
@@ -15,9 +15,8 @@ export function dateFormat(fmt, date) { //author: meizz
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
-export function getScrollTop() {
-    if( document.documentElement && document.documentElement.scollTop ) {
+function getScrollTop() {
+    if( document.documentElement && document.documentElement.scrollTop ) {
         return document.documentElement.scrollTop;
     } else if ( document.body ) {
         return document.body.scrollTop
@@ -25,19 +24,36 @@ export function getScrollTop() {
     return new Error("environment")
 }
 
-export function getClientHeight() {
+function getClientHeight() {
     if( document.body.clientHeight && document.documentElement.clientHeight ) {
         return Math.min(document.body.clientHeight, document.documentElement.clientHeight);        
     } else {
         return Math.max(document.body.clientHeight, document.documentElement.clientHeight);   
     }
 }
-export function getScrollHeight() {
+function getScrollHeight() {
     return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+}
+
+function scroll(callback) {
+    if(window.onscroll) {
+        window.onscroll = function () {
+            callback();
+        }
+    }else if (window.addEventListener) {
+        window.addEventListener("scroll", function () {
+            callback();
+        })
+    }else {
+        window.attactEvent("onscroll", function () {
+            callback();
+        })
+    }
 }
 export default {
     dateFormat: dateFormat,
     getScrollTop: getScrollTop,
     getClientHeight: getClientHeight,
-    getScrollHeight: getScrollHeight
+    getScrollHeight: getScrollHeight,
+    scroll: scroll
 }

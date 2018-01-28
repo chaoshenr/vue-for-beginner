@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { dateFormat } from "@/js/util.js"
+import $util from "@/js/util.js"
 export default {
     name: "TextItem",
     data(){
@@ -16,7 +16,7 @@ export default {
     },
     props: ["item"],
     created(){
-        this.item.ct = dateFormat("MM-dd hh:mm", new Date(this.item.ct));
+        this.item.ct = $util.dateFormat("MM-dd hh:mm", new Date(this.item.ct));
     }
 }
 </script>

@@ -7,28 +7,64 @@
 </template>
 
 <script>
+import util from "@/js/util.js"
 import requestAPI from "@/js/requestAPI"
 import textItem from "@/components/textItem"
 export default {
     name: "TextJokes",
     data(){
         return {
-            jokeList: []
+            jokeList: [],
+            page: 1,
+            loadMoreFlag: true
         }
     },
     components: {
         textItem
     },
     created(){
+        let clientHeight = util.getClientHeight();
+        
+        console.log("clientHeight: "+clientHeight);
+        
         //请求
-        requestAPI.getTextJokes({
-            page: 1
-        }).then( res => {
-            this.jokeList = res.beans.contentlist;
-            console.log(this.jokeList);
-        }).catch(err => {
-            console.log(err);
+        this.getTextJokes(this.page);
+        console.log(util.getClientHeight())
+        util.scroll(() => {
+            console.log("scrolling....")
+            let scrollHeight = util.getScrollHeight();
+            let scrollTop = util.getScrollTop();
+            if (scrollTop + clientHeight > scrollHeight - 100 && this.loadMoreFlag) {
+                // alert("loadMore...")
+                this.loadMoreFlag = false;
+                this.getTextJokes(this.page ++);
+            }
         })
+    },
+    updated(){
+        // alert("update");
+        this.loadMoreFlag = true;
+    },
+    methods: {
+        getTextJokes (page) {
+            requestAPI.getTextJokes({
+                page: page
+            }).then( res => {
+                console.log("response....")
+                console.log(res);
+                if (res.status == 0) {
+                    console.log(`page: ${page}`);
+                    if (page == 1) {
+                        this.jokeList = [];
+                    }
+                    this.jokeList = this.jokeList.concat(res.beans.contentlist);
+                    console.log(this.jokeList);
+                }
+                
+            }).catch(err => {
+                console.log(err);
+            })
+        }
     }
 }
 </script>

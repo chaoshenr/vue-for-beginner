@@ -1,25 +1,29 @@
 <template>
     <div class="gif-jokes">
-        gif-jokes
+        <gif-item v-for="(item, key) of gifJokes" :key="key" :item="item"></gif-item>
     </div>
 </template>
 
 <script>
 import requestAPI from "@/js/requestAPI"
+import gifItem from "@/components/gifItem"
 export default {
     name: "gifJokes",
+    components: {
+        gifItem
+    },
     data(){
         return {
             gifJokes: []
         }
     },
     created(){
-        requestApI.getGifJokes({
+        requestAPI.getGifJokes({
             page: 1
         }).then( result => {
             let contentList = result.beans.contentlist;
-            this.imageJokes = [...contentList];
-            console.log( this.imageJokes );
+            this.gifJokes = [...contentList];
+            console.log( this.gifJokes );
         }).catch( err => {
 
         })
